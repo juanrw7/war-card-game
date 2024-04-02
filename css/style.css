@@ -1,3 +1,15 @@
 body {
-  background-color: gray;
+  background-color: rgba(38, 96, 38, 0.868);
+  margin: 0p;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(168, 192, 172);
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 30px;
 }
