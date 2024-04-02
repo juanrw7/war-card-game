@@ -15,13 +15,18 @@ h2 {
 }
 
 .card {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
-.computer-side {
+.mat {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+#playing-ground {
+  margin-top: 70px;
+  margin-bottom: 70px;
 }
