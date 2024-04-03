@@ -8,11 +8,11 @@ let shuffledDeck = [], playerPersonalDeck=[], playerDecidingDeck=[], computerPer
 
 let wholeDeck, turn, winner, warMode, playerGameCard, computerGameCard 
 
-
+let gameIsInPlay = false
 /*----------------- Cached Element References -----------------*/
 const resetButton = document.getElementById("reset")
 const beginButton = document.getElementById("start-game")
-const playButton = document.getElementById("play-card")
+const playCardButton = document.getElementById("play-card")
 
 const message = document.getElementById("message")
 
@@ -27,7 +27,37 @@ const computerRightSide =document.getElementById("computer-deciding-deck")
 const computerBoardSide =document.getElementById("computer-game-card")
 console.log(beginButton)
 /*---------------------- Event Listeners ----------------------*/
-
+beginButton.addEventListener("click",playGame)
+resetButton.addEventListener("click",handleReset)
 
 
 /*------------------------- Functions -------------------------*/
+init()
+function handleReset() {
+  gameIsInPlay = false
+  render()
+}
+
+function playGame() {
+  gameIsInPlay = true
+  render()
+}
+
+function init() {
+  //gameIsInPlay = true
+  render()
+}
+
+
+function render() {
+  console.log(gameIsInPlay)
+  if (gameIsInPlay) {
+    resetButton.style.display =""
+    playCardButton.style.display =""
+    beginButton.style.display = "none"
+  } else {
+    resetButton.style.display ="none"
+    playCardButton.style.display ="none"
+    beginButton.style.display = ""
+  }
+}
