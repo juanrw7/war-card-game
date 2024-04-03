@@ -39,6 +39,7 @@ button {
   background-color: rgb(168, 192, 172);
   width: 247px;
   height: 56px;
+  border: 0px;
 }
 
 .interact-buttons {
