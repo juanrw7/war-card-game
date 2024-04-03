@@ -11,6 +11,7 @@ nav {
   align-items:center ;
   background-color: rgb(168, 192, 172);
   margin-bottom: 25px;
+  height: 65px;
 }
 h2 {
   font-size: 34px;
@@ -33,15 +34,23 @@ button {
   padding: 10px 10px 10px 10px;
   font-family: monospace;
 }
-
-.message {
+#message {
   font-size: 27px;
   background-color: rgb(168, 192, 172);
   width: 247px;
   height: 56px;
 }
 
-.message-container {
+.interact-buttons {
+  background-color: rgba(170, 37, 37, 0.872);
+  color: whitesmoke;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0px 5px 50px 5px;
+  border-color: rgb(168, 192, 172) ;
+}
+
+.message-container,.buttons-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,6 +66,7 @@ button {
 }
 #player-side {
   margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 #player-game-card, #computer-game-card {
