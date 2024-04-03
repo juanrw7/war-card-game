@@ -16,6 +16,15 @@ const playButton = document.getElementById("play-card")
 
 const message = document.getElementById("message")
 
+const startingDeck = document.getElementById("starting-deck")
+
+const playerLeftSide= document.getElementById("player-deciding-deck")
+const playerRightSide =document.getElementById("player-personal-deck")
+const playerBoardSide =document.getElementById("player-game-card")
+
+const computerLeftSide= document.getElementById("computer-personal-deck")
+const computerRightSide =document.getElementById("computer-deciding-deck")
+const computerBoardSide =document.getElementById("computer-game-card")
 console.log(beginButton)
 /*---------------------- Event Listeners ----------------------*/
 
