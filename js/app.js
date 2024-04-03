@@ -10,9 +10,13 @@ let wholeDeck, turn, winner, warMode, playerGameCard, computerGameCard
 
 
 /*----------------- Cached Element References -----------------*/
+const resetButton = document.getElementById("reset")
+const beginButton = document.getElementById("start-game")
+const playButton = document.getElementById("play-card")
 
+const message = document.getElementById("message")
 
-
+console.log(beginButton)
 /*---------------------- Event Listeners ----------------------*/
 
 
