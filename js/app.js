@@ -35,6 +35,7 @@ resetButton.addEventListener("click",handleReset)
 init()
 function handleReset() {
   gameIsInPlay = false
+  message.innerText = "---"
   render()
 }
 
@@ -44,7 +45,7 @@ function playGame() {
 }
 
 function init() {
-  //gameIsInPlay = true
+  gameIsInPlay = false
   render()
 }
 
