@@ -4,7 +4,9 @@ const unshuffledDeck = ["d02", "d03", "d04", "d05", "d06", "d07", "d08", "d09", 
 console.log(unshuffledDeck)
 
 /*--------------------- Variables (state) ---------------------*/
+let shuffledDeck = [], playerPersonalDeck=[], playerDecidingDeck=[], computerPersonalDeck=[], computerDecidingDeck=[]
 
+let wholeDeck, turn, winner, warMode, playerGameCard, computerGameCard 
 
 
 /*----------------- Cached Element References -----------------*/

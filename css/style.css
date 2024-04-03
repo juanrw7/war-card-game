@@ -1,19 +1,20 @@
 body {
   background-color: rgba(38, 96, 38, 0.868);
   margin: 0p;
+  font-family: monospace;
+  justify-content: center;
+  align-items: center;
 }
-
 nav {
   display: flex;
   justify-content: center;
+  align-items:center ;
   background-color: rgb(168, 192, 172);
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
-
 h2 {
-  font-size: 30px;
+  font-size: 34px;
 }
-
 .card {
   margin-bottom: 5px;
 }
@@ -27,7 +28,39 @@ h2 {
   height: 153px;
 }
 
+button {
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+  font-family: monospace;
+}
+
+.message {
+  font-size: 27px;
+  background-color: rgb(168, 192, 172);
+  width: 247px;
+  height: 56px;
+}
+
+.message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #playing-ground {
-  margin-top: 70px;
-  margin-bottom: 70px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#computer-side {
+  margin-bottom: 60px;
+}
+#player-side {
+  margin-top: 60px;
+}
+
+#player-game-card, #computer-game-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
