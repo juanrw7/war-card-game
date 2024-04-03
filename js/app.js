@@ -41,20 +41,34 @@ function handleReset() {
 
 function playGame() {
   generatePlayerDeck()
+  generateComputerDeck()
   gameIsInPlay = true
   console.log(playerPersonalDeck)
+  console.log(computerPersonalDeck)
   render()
 }
 
 function generatePlayerDeck() {
   console.log("making player deck")
-  for (let i = 0; i <= 26; i++) {
+  for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
 //    console.log(randIdx)
     let cardToAdd = deckCopy.splice(randIdx, 1)
     playerPersonalDeck.push(cardToAdd)
   }
   return playerPersonalDeck
+}
+
+function generateComputerDeck() {
+  console.log(deckCopy.length)
+  console.log("making computer deck")
+  for (let i = 0; i <= 25; i++) {
+    let randIdx = Math.floor(Math.random() * deckCopy.length)
+//    console.log(randIdx)
+    let cardToAdd = deckCopy.splice(randIdx, 1)
+    computerPersonalDeck.push(cardToAdd)
+  }
+  return computerPersonalDeck
 }
 
 function init() {
