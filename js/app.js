@@ -26,14 +26,19 @@ const playerBoardSide =document.getElementById("player-game-card")
 const computerLeftSide= document.getElementById("computer-personal-deck")
 const computerRightSide =document.getElementById("computer-deciding-deck")
 const computerBoardSide =document.getElementById("computer-game-card")
-console.log(beginButton)
 /*---------------------- Event Listeners ----------------------*/
 beginButton.addEventListener("click",beginGame)
 resetButton.addEventListener("click",handleReset)
-
+playCardButton.addEventListener("click",handlePlayCard)
 
 /*------------------------- Functions -------------------------*/
 init()
+
+function init() {
+  gameIsInPlay = false
+  render()
+}
+
 function handleReset() {
   gameIsInPlay = false
   message.innerText = "---"
@@ -54,7 +59,7 @@ function beginGame() {
   console.log(computerPersonalDeck)
   message.innerText = "Shuffling deck"
   beginButton.style.display = "none"
-  setTimeout(render,1500)
+  setTimeout(render,1000)
   setTimeout(function () {
     message.innerText = "Done!"
     if (playerPersonalDeck.length > 1) {
@@ -69,11 +74,10 @@ function beginGame() {
       startingDeck.innerHTML = ""
     }
     
-  },1500)
+  },1000)
 }
 
 function generatePlayerDeck() {
-  console.log("making player deck")
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
     //    console.log(randIdx)
@@ -84,8 +88,6 @@ function generatePlayerDeck() {
 }
 
 function generateComputerDeck() {
-  console.log(deckCopy.length)
-  console.log("making computer deck")
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
     //    console.log(randIdx)
@@ -95,11 +97,45 @@ function generateComputerDeck() {
   return computerPersonalDeck
 }
 
-function init() {
-  gameIsInPlay = false
-  render()
+function handlePlayCard() {
+  console.log("play card hit")
+
+  console.log(checkVal(playerPersonalDeck[0]))
+  console.log(checkVal(computerPersonalDeck[0]))
+
+
+  if (checkVal(playerPersonalDeck[0]) > checkVal(computerPersonalDeck[0])) {
+    console.log("player card is higher")
+
+  } else if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
+    console.log("computer card is higher")
+
+  } else if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
+    console.log("Enter War mode")
+  }
 }
 
+
+function playerWinsCard() {
+  console.log("handle player winning card")
+}
+
+function computerWinsCard() {
+  console.log("handle computer winning card")
+}
+
+function runWarMode() {
+  console.log("handle war mode")
+}
+
+function checkVal(str) {
+  let adjustedStr = str.slice(1)
+  if (adjustedStr === "A") return 14
+  if (adjustedStr === "K") return 13
+  if (adjustedStr === "Q") return 12
+  if (adjustedStr === "J") return 11
+  return parseInt(adjustedStr)
+}
 
 function render() {
   console.log(gameIsInPlay)
