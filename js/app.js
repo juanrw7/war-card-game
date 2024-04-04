@@ -119,6 +119,7 @@ function handlePlayCard() {
 
   } else if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
     console.log("computer card is higher")
+    setTimeout(computerWinsCard,1000)
 
   } else if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
     console.log("Enter War mode")
@@ -131,11 +132,11 @@ function playerWinsCard() {
 
   playerBoardSide.innerHTML= ""
   computerBoardSide.innerHTML= ""
-
-  let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardToAdd)
+  
   let cardToAdd2 = playerPersonalDeck.splice(0, 1)[0]
   playerDecidingDeck.unshift(cardToAdd2)
+  let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
+  playerDecidingDeck.unshift(cardToAdd)
 
   console.log(playerDecidingDeck)
   playerLeftSide.innerHTML = ""
@@ -147,6 +148,22 @@ function playerWinsCard() {
 
 function computerWinsCard() {
   console.log("handle computer winning card")
+  message.innerText= "Computer wins round"
+
+  playerBoardSide.innerHTML= ""
+  computerBoardSide.innerHTML= ""
+
+  let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
+  computerDecidingDeck.unshift(cardToAdd)
+  let cardToAdd2 = playerPersonalDeck.splice(0, 1)[0]
+  computerDecidingDeck.unshift(cardToAdd2)
+  console.log(computerDecidingDeck)
+
+  computerRightSide.innerHTML = ""
+  let newCardEl= document.createElement("div")
+  newCardEl.className = `card ${computerDecidingDeck[0]} large`
+  computerRightSide.appendChild(newCardEl)
+  console.log(playerPersonalDeck)
 }
 
 function runWarMode() {
