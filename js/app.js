@@ -16,7 +16,8 @@ const playCardButton = document.getElementById("play-card")
 
 const message = document.getElementById("message")
 
-const startingDeck = document.getElementById("starting-deck")
+const startingDeck = document.querySelector(".starting-deck")
+console.log(startingDeck)
 
 const playerLeftSide= document.getElementById("player-deciding-deck")
 const playerRightSide =document.getElementById("player-personal-deck")
@@ -27,7 +28,7 @@ const computerRightSide =document.getElementById("computer-deciding-deck")
 const computerBoardSide =document.getElementById("computer-game-card")
 console.log(beginButton)
 /*---------------------- Event Listeners ----------------------*/
-beginButton.addEventListener("click",playGame)
+beginButton.addEventListener("click",beginGame)
 resetButton.addEventListener("click",handleReset)
 
 
@@ -42,12 +43,13 @@ function handleReset() {
   render()
 }
 
-function playGame() {
+function beginGame() {
   generatePlayerDeck()
   generateComputerDeck()
   gameIsInPlay = true
   console.log(playerPersonalDeck)
   console.log(computerPersonalDeck)
+
   render()
 }
 
@@ -90,5 +92,22 @@ function render() {
     resetButton.style.display ="none"
     playCardButton.style.display ="none"
     beginButton.style.display = ""
+  }
+  computerLeftSide.innerHTML = ""
+  playerRightSide.innerHTML = ""
+  let newCardEl= document.createElement("div")
+  newCardEl.className = "card back-red large"
+  startingDeck.appendChild(newCardEl)
+
+  if (playerPersonalDeck.length > 1) {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    playerRightSide.appendChild(newCardEl)
+  }
+  if (computerPersonalDeck.length > 1) {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerLeftSide.appendChild(newCardEl)
+    startingDeck.innerHTML = ""
   }
 }
