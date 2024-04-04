@@ -66,21 +66,7 @@ function beginGame() {
   message.innerText = "Shuffling deck"
   beginButton.style.display = "none"
   setTimeout(render,1000)
-  setTimeout(function () {
-    message.innerText = "Done!"
-    if (playerPersonalDeck.length > 1) {
-      let newCardEl= document.createElement("div")
-      newCardEl.className = "card back-red large"
-      playerRightSide.appendChild(newCardEl)
-    }
-    if (computerPersonalDeck.length > 1) {
-      let newCardEl= document.createElement("div")
-      newCardEl.className = "card back-red large"
-      computerLeftSide.appendChild(newCardEl)
-      startingDeck.innerHTML = ""
-    }
-    
-  },1000)
+  setTimeout(updateBeginBoard,1000)
 }
 
 function generatePlayerDeck() {
@@ -103,6 +89,31 @@ function generateComputerDeck() {
   return computerPersonalDeck
 }
 
+function updateBeginBoard() {
+  message.innerText = "Done!"
+  if (playerPersonalDeck.length > 1) {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    playerRightSide.appendChild(newCardEl)
+
+    let playerPersonalCount= document.createElement("button")
+    playerPersonalCount.className = "count-button"
+    playerPersonalCount.innerText = playerPersonalDeck.length
+    playerRightSide.appendChild(playerPersonalCount)
+  }
+  if (computerPersonalDeck.length > 1) {
+    let computerPersonalCount= document.createElement("button")
+    computerPersonalCount.className = "count-button"
+    computerPersonalCount.innerText = computerPersonalDeck.length
+    computerLeftSide.appendChild(computerPersonalCount)
+    
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerLeftSide.appendChild(newCardEl)
+    startingDeck.innerHTML = ""
+  }
+}
+
 function handlePlayCard() {
   console.log("play card hit")
 
@@ -123,11 +134,11 @@ function handlePlayCard() {
     console.log("player card is higher")
     setTimeout(playerWinsCard,1000)
 
-  } else if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
+  }  if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
     console.log("computer card is higher")
     setTimeout(computerWinsCard,1000)
 
-  } else if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
+  }  if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
     console.log("Enter War mode")
   }
 }
@@ -150,6 +161,8 @@ function playerWinsCard() {
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
   playerLeftSide.appendChild(newCardEl)
   console.log(playerPersonalDeck)
+
+  updatePersonalDeckCount()
 }
 
 function computerWinsCard() {
@@ -170,10 +183,37 @@ function computerWinsCard() {
   newCardEl.className = `card ${computerDecidingDeck[0]} large`
   computerRightSide.appendChild(newCardEl)
   console.log(playerPersonalDeck)
+
+  updatePersonalDeckCount()
 }
 
 function runWarMode() {
   console.log("handle war mode")
+}
+
+function updatePersonalDeckCount() {
+  playerRightSide.innerHTML = ""
+  if (playerPersonalDeck.length > 1) {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    playerRightSide.appendChild(newCardEl)
+    
+    let playerPersonalCount= document.createElement("button")
+    playerPersonalCount.className = "count-button"
+    playerPersonalCount.innerText = playerPersonalDeck.length
+    playerRightSide.appendChild(playerPersonalCount)
+  }
+  computerLeftSide.innerHTML =""
+  if (computerPersonalDeck.length > 1) {
+    let computerPersonalCount= document.createElement("button")
+    computerPersonalCount.className = "count-button"
+    computerPersonalCount.innerText = computerPersonalDeck.length
+    computerLeftSide.appendChild(computerPersonalCount)
+
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerLeftSide.appendChild(newCardEl)
+  }
 }
 
 function checkVal(str) {
