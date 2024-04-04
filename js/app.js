@@ -103,6 +103,8 @@ function handlePlayCard() {
   console.log(checkVal(playerPersonalDeck[0]))
   console.log(checkVal(computerPersonalDeck[0]))
 
+  message.innerText= "Comparing cards"
+
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerPersonalDeck[0]} large`
   playerBoardSide.appendChild(newCardEl)
@@ -113,7 +115,7 @@ function handlePlayCard() {
 
   if (checkVal(playerPersonalDeck[0]) > checkVal(computerPersonalDeck[0])) {
     console.log("player card is higher")
-    playerWinsCard()
+    setTimeout(playerWinsCard,1000)
 
   } else if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
     console.log("computer card is higher")
@@ -125,6 +127,10 @@ function handlePlayCard() {
 
 function playerWinsCard() {
   console.log("handle player winning card")
+  message.innerText= "Player wins round"
+
+  playerBoardSide.innerHTML= ""
+  computerBoardSide.innerHTML= ""
 
   let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
   playerDecidingDeck.unshift(cardToAdd)
