@@ -177,4 +177,7 @@ function render() {
   computerLeftSide.innerHTML = ""
   playerRightSide.innerHTML = ""
   playerLeftSide.innerHTML = ""
+
+  playerBoardSide.innerHTML= ""
+  computerBoardSide.innerHTML= ""
 }
