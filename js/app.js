@@ -53,7 +53,7 @@ function generatePlayerDeck() {
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
 //    console.log(randIdx)
-    let cardToAdd = deckCopy.splice(randIdx, 1)
+    let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     playerPersonalDeck.push(cardToAdd)
   }
   return playerPersonalDeck
@@ -65,7 +65,7 @@ function generateComputerDeck() {
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
 //    console.log(randIdx)
-    let cardToAdd = deckCopy.splice(randIdx, 1)
+    let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     computerPersonalDeck.push(cardToAdd)
   }
   return computerPersonalDeck
