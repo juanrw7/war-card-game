@@ -86,7 +86,13 @@ button {
   justify-content: center;
 }
 
-#starting-deck-count {
+#player-personal-deck,#player-deciding-deck,#computer-personal-deck,#computer-deciding-deck,#player-game-card,#computer-game-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-button {
   padding: 5px 5px 5px 5px;
   font-size: 15px;
   border: 0px;

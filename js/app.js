@@ -48,9 +48,9 @@ function handleReset() {
   let newCardEl= document.createElement("div")
   newCardEl.className = "card back-red large"
   startingDeck.appendChild(newCardEl)
-  
+
   let startingDeckCount= document.createElement("button")
-  startingDeckCount.id= "starting-deck-count"
+  startingDeckCount.className = "count-button"
   startingDeckCount.innerText = unshuffledDeck.length
   startingDeck.appendChild(startingDeckCount)
   
