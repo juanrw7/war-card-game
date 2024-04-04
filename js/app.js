@@ -120,16 +120,16 @@ function playerWinsCard() {
   console.log("handle player winning card")
 
   let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.push(cardToAdd)
+  playerDecidingDeck.unshift(cardToAdd)
   let cardToAdd2 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.push(cardToAdd2)
+  playerDecidingDeck.unshift(cardToAdd2)
 
   console.log(playerDecidingDeck)
 
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
   playerLeftSide.appendChild(newCardEl)
-
+  console.log(playerPersonalDeck)
 }
 
 function computerWinsCard() {
@@ -160,6 +160,8 @@ function render() {
     playCardButton.style.display ="none"
     beginButton.style.display = ""
   }
+  computerRightSide.innerHTML = ""
   computerLeftSide.innerHTML = ""
   playerRightSide.innerHTML = ""
+  playerLeftSide.innerHTML = ""
 }
