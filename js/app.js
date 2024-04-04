@@ -17,7 +17,6 @@ const playCardButton = document.getElementById("play-card")
 const message = document.getElementById("message")
 
 const startingDeck = document.querySelector(".starting-deck")
-console.log(startingDeck)
 
 const playerLeftSide= document.getElementById("player-deciding-deck")
 const playerRightSide =document.getElementById("player-personal-deck")
