@@ -106,6 +106,7 @@ function handlePlayCard() {
 
   if (checkVal(playerPersonalDeck[0]) > checkVal(computerPersonalDeck[0])) {
     console.log("player card is higher")
+    playerWinsCard()
 
   } else if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
     console.log("computer card is higher")
@@ -115,9 +116,20 @@ function handlePlayCard() {
   }
 }
 
-
 function playerWinsCard() {
   console.log("handle player winning card")
+
+  let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
+  playerDecidingDeck.push(cardToAdd)
+  let cardToAdd2 = playerPersonalDeck.splice(0, 1)[0]
+  playerDecidingDeck.push(cardToAdd2)
+
+  console.log(playerDecidingDeck)
+
+  let newCardEl= document.createElement("div")
+  newCardEl.className = `card ${playerDecidingDeck[0]} large`
+  playerLeftSide.appendChild(newCardEl)
+
 }
 
 function computerWinsCard() {
