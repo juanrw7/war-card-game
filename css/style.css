@@ -79,3 +79,15 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+.starting-deck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#starting-deck-count {
+  padding: 5px 5px 5px 5px;
+  font-size: 15px;
+  border: 0px;
+}
