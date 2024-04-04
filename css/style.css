@@ -35,7 +35,7 @@ button {
   font-family: monospace;
 }
 #message {
-  font-size: 27px;
+  font-size: 24px;
   background-color: rgb(168, 192, 172);
   width: 247px;
   height: 56px;
@@ -55,6 +55,10 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttons-container {
+  height: 100px;
 }
 
 #playing-ground {

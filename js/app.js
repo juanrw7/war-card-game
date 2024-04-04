@@ -40,6 +40,9 @@ function handleReset() {
   deckCopy = [...unshuffledDeck]
   playerPersonalDeck = []
   computerPersonalDeck = []
+  let newCardEl= document.createElement("div")
+  newCardEl.className = "card back-red large"
+  startingDeck.appendChild(newCardEl)
   render()
 }
 
@@ -49,15 +52,31 @@ function beginGame() {
   gameIsInPlay = true
   console.log(playerPersonalDeck)
   console.log(computerPersonalDeck)
-
-  render()
+  message.innerText = "Shuffling deck"
+  beginButton.style.display = "none"
+  setTimeout(render,1500)
+  setTimeout(function () {
+    message.innerText = "Done!"
+    if (playerPersonalDeck.length > 1) {
+      let newCardEl= document.createElement("div")
+      newCardEl.className = "card back-red large"
+      playerRightSide.appendChild(newCardEl)
+    }
+    if (computerPersonalDeck.length > 1) {
+      let newCardEl= document.createElement("div")
+      newCardEl.className = "card back-red large"
+      computerLeftSide.appendChild(newCardEl)
+      startingDeck.innerHTML = ""
+    }
+    
+  },1500)
 }
 
 function generatePlayerDeck() {
   console.log("making player deck")
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
-//    console.log(randIdx)
+    //    console.log(randIdx)
     let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     playerPersonalDeck.push(cardToAdd)
   }
@@ -69,7 +88,7 @@ function generateComputerDeck() {
   console.log("making computer deck")
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
-//    console.log(randIdx)
+    //    console.log(randIdx)
     let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     computerPersonalDeck.push(cardToAdd)
   }
@@ -95,19 +114,4 @@ function render() {
   }
   computerLeftSide.innerHTML = ""
   playerRightSide.innerHTML = ""
-  let newCardEl= document.createElement("div")
-  newCardEl.className = "card back-red large"
-  startingDeck.appendChild(newCardEl)
-
-  if (playerPersonalDeck.length > 1) {
-    let newCardEl= document.createElement("div")
-    newCardEl.className = "card back-red large"
-    playerRightSide.appendChild(newCardEl)
-  }
-  if (computerPersonalDeck.length > 1) {
-    let newCardEl= document.createElement("div")
-    newCardEl.className = "card back-red large"
-    computerLeftSide.appendChild(newCardEl)
-    startingDeck.innerHTML = ""
-  }
 }
