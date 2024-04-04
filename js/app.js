@@ -36,6 +36,9 @@ init()
 function handleReset() {
   gameIsInPlay = false
   message.innerText = "---"
+  deckCopy = [...unshuffledDeck]
+  playerPersonalDeck = []
+  computerPersonalDeck = []
   render()
 }
 
