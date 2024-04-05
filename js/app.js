@@ -358,4 +358,6 @@ function render() {
   computerBoardSide.innerHTML= ""
   computerWarBoard.innerHTML=""
   computerWarCardHolder.innerHTML= ""
+  computerDecidingDeck = []
+  playerDecidingDeck = []
 }
