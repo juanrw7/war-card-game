@@ -25,6 +25,9 @@ const playerBoardSide =document.getElementById("player-game-card")
 const computerLeftSide= document.getElementById("computer-personal-deck")
 const computerRightSide =document.getElementById("computer-deciding-deck")
 const computerBoardSide =document.getElementById("computer-game-card")
+
+const computerWarBoard =document.getElementById("computer-war-cards")
+const computerWarCardHolder =document.getElementById("computer-played-war-card")
 /*---------------------- Event Listeners ----------------------*/
 beginButton.addEventListener("click",beginGame)
 resetButton.addEventListener("click",handleReset)
@@ -137,9 +140,10 @@ function handlePlayCard() {
   }  if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
     console.log("computer card is higher")
     setTimeout(computerWinsCard,1000)
-
+    
   }  if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
     console.log("Enter War mode")
+    setTimeout(runWarMode,1000)
   }
 }
 
@@ -190,6 +194,16 @@ function computerWinsCard() {
 
 function runWarMode() {
   console.log("handle war mode")
+  message.innerText= "WAR"
+
+  for (let i = 0; i < 3; i++) {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerWarBoard.appendChild(newCardEl)
+    let newCardEl2= document.createElement("div")
+    newCardEl2.className = "card back-red large"
+    playerBoardSide.appendChild(newCardEl2)
+  }
 }
 
 function updatePlayerDecidingDeckCount() {
@@ -262,4 +276,6 @@ function render() {
 
   playerBoardSide.innerHTML= ""
   computerBoardSide.innerHTML= ""
+  computerWarBoard.innerHTML=""
+  computerWarCardHolder.innerHTML= ""
 }
