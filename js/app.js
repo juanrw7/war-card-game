@@ -157,11 +157,11 @@ function playerWinsCard() {
 
   console.log(playerDecidingDeck)
   playerLeftSide.innerHTML = ""
+  updatePlayerDecidingDeckCount()
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
   playerLeftSide.appendChild(newCardEl)
   console.log(playerPersonalDeck)
-
   updatePersonalDeckCount()
 }
 
@@ -183,6 +183,7 @@ function computerWinsCard() {
   newCardEl.className = `card ${computerDecidingDeck[0]} large`
   computerRightSide.appendChild(newCardEl)
   console.log(playerPersonalDeck)
+  updateComputerDecidingDeckCount()
 
   updatePersonalDeckCount()
 }
@@ -191,9 +192,27 @@ function runWarMode() {
   console.log("handle war mode")
 }
 
+function updatePlayerDecidingDeckCount() {
+  if (playerDecidingDeck.length>=1) { 
+    let playerDecidingCount= document.createElement("button")
+    playerDecidingCount.className = "count-button"
+    playerDecidingCount.innerText = playerDecidingDeck.length
+    playerLeftSide.appendChild(playerDecidingCount)
+  }
+}
+
+function updateComputerDecidingDeckCount() {
+  if (computerDecidingDeck.length>=1) {
+    let computerDecidingCount= document.createElement("button")
+    computerDecidingCount.className = "count-button"
+    computerDecidingCount.innerText = computerDecidingDeck.length
+    computerRightSide.appendChild(computerDecidingCount)
+  }
+}
+
 function updatePersonalDeckCount() {
   playerRightSide.innerHTML = ""
-  if (playerPersonalDeck.length > 1) {
+  if (playerPersonalDeck.length >= 1) {
     let newCardEl= document.createElement("div")
     newCardEl.className = "card back-red large"
     playerRightSide.appendChild(newCardEl)
@@ -204,7 +223,7 @@ function updatePersonalDeckCount() {
     playerRightSide.appendChild(playerPersonalCount)
   }
   computerLeftSide.innerHTML =""
-  if (computerPersonalDeck.length > 1) {
+  if (computerPersonalDeck.length >= 1) {
     let computerPersonalCount= document.createElement("button")
     computerPersonalCount.className = "count-button"
     computerPersonalCount.innerText = computerPersonalDeck.length
