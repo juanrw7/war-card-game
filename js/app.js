@@ -196,7 +196,7 @@ function runWarMode() {
   setTimeout(displayUpsideDownCards,500)
   setTimeout(displayUpsideDownCards,800)
   setTimeout(displayDecidingWarCards,1350)
-  setTimeout(determineWarWinner,2000)
+  setTimeout(determineWarWinner,2800)
 
 }
 
@@ -238,8 +238,23 @@ function playerWinsWar() {
   playerDecidingDeck.unshift(cardsToAdd9)
   let cardsToAdd10 = playerPersonalDeck.splice(0, 1)[0]
   playerDecidingDeck.unshift(cardsToAdd10)
-
   console.log(playerDecidingDeck)
+
+  message.innerText= "Player wins WAR"
+
+  playerBoardSide.innerHTML= ""
+  computerBoardSide.innerHTML= ""
+  computerWarBoard.innerHTML=""
+  computerWarCardHolder.innerHTML= ""
+
+  playerLeftSide.innerHTML=""
+
+  updatePlayerDecidingDeckCount()
+
+  let newCardEl= document.createElement("div")
+  newCardEl.className = `card ${playerDecidingDeck[0]} large`
+  playerLeftSide.appendChild(newCardEl)
+//  console.log(playerPersonalDeck)
 }
 
 function computerWinsWar() {
@@ -266,6 +281,20 @@ function computerWinsWar() {
   let cardsToAdd10 = playerPersonalDeck.splice(0, 1)[0]
   computerDecidingDeck.unshift(cardsToAdd10)
   console.log(computerDecidingDeck)
+
+  message.innerText= "Computer wins WAR"
+
+  playerBoardSide.innerHTML= ""
+  computerBoardSide.innerHTML= ""
+  computerWarBoard.innerHTML=""
+  computerWarCardHolder.innerHTML= ""
+
+  computerRightSide.innerHTML=""
+  
+  let newCardEl= document.createElement("div")
+  newCardEl.className = `card ${computerDecidingDeck[0]} large`
+  computerRightSide.appendChild(newCardEl)
+  updateComputerDecidingDeckCount()
 }
 
 function displayDecidingWarCards() {
