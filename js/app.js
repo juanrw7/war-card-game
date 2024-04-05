@@ -201,7 +201,18 @@ function runWarMode() {
   setTimeout(displayUpsideDownCards,200)
   setTimeout(displayUpsideDownCards,500)
   setTimeout(displayUpsideDownCards,800)
+  setTimeout(displayDecidingWarCards,1350)
 
+
+}
+
+function displayDecidingWarCards() {
+  let newCardEl= document.createElement("div")
+  newCardEl.className = `card ${playerPersonalDeck[4]} large`
+  playerBoardSide.appendChild(newCardEl)
+  let newCardEl2= document.createElement("div")
+  newCardEl2.className =  `card ${computerPersonalDeck[4]} large`
+  computerWarCardHolder.appendChild(newCardEl2)
 }
 
 function displayUpsideDownCards() {
