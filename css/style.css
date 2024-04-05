@@ -12,6 +12,7 @@ nav {
   background-color: rgb(168, 192, 172);
   margin-bottom: 25px;
   height: 65px;
+  border-radius: 10px;
 }
 h2 {
   font-size: 34px;
