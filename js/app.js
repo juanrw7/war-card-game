@@ -120,9 +120,6 @@ function updateBeginBoard() {
 function handlePlayCard() {
   console.log("play card hit")
 
-  console.log(checkVal(playerPersonalDeck[0]))
-  console.log(checkVal(computerPersonalDeck[0]))
-
   message.innerText= "Comparing cards"
 
   let newCardEl= document.createElement("div")
@@ -159,13 +156,13 @@ function playerWinsCard() {
   let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
   playerDecidingDeck.unshift(cardToAdd)
 
-  console.log(playerDecidingDeck)
+//  console.log(playerDecidingDeck)
   playerLeftSide.innerHTML = ""
   updatePlayerDecidingDeckCount()
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
   playerLeftSide.appendChild(newCardEl)
-  console.log(playerPersonalDeck)
+//  console.log(playerPersonalDeck)
   updatePersonalDeckCount()
 }
 
@@ -185,7 +182,7 @@ function computerWinsCard() {
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${computerDecidingDeck[0]} large`
   computerRightSide.appendChild(newCardEl)
-  console.log(playerPersonalDeck)
+//  console.log(playerPersonalDeck)
   updateComputerDecidingDeckCount()
 
   updatePersonalDeckCount()
