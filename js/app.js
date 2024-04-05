@@ -198,34 +198,19 @@ function runWarMode() {
 
 //  for (let i = 0; i < 3; i++) {
 //  }
-  displayUpsideDownCards()
+  setTimeout(displayUpsideDownCards,200)
+  setTimeout(displayUpsideDownCards,500)
+  setTimeout(displayUpsideDownCards,800)
+
 }
 
 function displayUpsideDownCards() {
-  setTimeout(() => {
     let newCardEl= document.createElement("div")
     newCardEl.className = "card back-red large"
     computerWarBoard.appendChild(newCardEl)
     let newCardEl2= document.createElement("div")
     newCardEl2.className = "card back-red large"
     playerBoardSide.appendChild(newCardEl2)
-  }, 200);
-  setTimeout(() => {
-    let newCardEl= document.createElement("div")
-    newCardEl.className = "card back-red large"
-    computerWarBoard.appendChild(newCardEl)
-    let newCardEl2= document.createElement("div")
-    newCardEl2.className = "card back-red large"
-    playerBoardSide.appendChild(newCardEl2)
-  }, 500);
-  setTimeout(() => {
-    let newCardEl= document.createElement("div")
-    newCardEl.className = "card back-red large"
-    computerWarBoard.appendChild(newCardEl)
-    let newCardEl2= document.createElement("div")
-    newCardEl2.className = "card back-red large"
-    playerBoardSide.appendChild(newCardEl2)
-  }, 800);
 }
 
 function updatePlayerDecidingDeckCount() {
