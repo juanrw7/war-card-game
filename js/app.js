@@ -196,14 +196,36 @@ function runWarMode() {
   console.log("handle war mode")
   message.innerText= "WAR"
 
-  for (let i = 0; i < 3; i++) {
+//  for (let i = 0; i < 3; i++) {
+//  }
+  displayUpsideDownCards()
+}
+
+function displayUpsideDownCards() {
+  setTimeout(() => {
     let newCardEl= document.createElement("div")
     newCardEl.className = "card back-red large"
     computerWarBoard.appendChild(newCardEl)
     let newCardEl2= document.createElement("div")
     newCardEl2.className = "card back-red large"
     playerBoardSide.appendChild(newCardEl2)
-  }
+  }, 200);
+  setTimeout(() => {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerWarBoard.appendChild(newCardEl)
+    let newCardEl2= document.createElement("div")
+    newCardEl2.className = "card back-red large"
+    playerBoardSide.appendChild(newCardEl2)
+  }, 500);
+  setTimeout(() => {
+    let newCardEl= document.createElement("div")
+    newCardEl.className = "card back-red large"
+    computerWarBoard.appendChild(newCardEl)
+    let newCardEl2= document.createElement("div")
+    newCardEl2.className = "card back-red large"
+    playerBoardSide.appendChild(newCardEl2)
+  }, 800);
 }
 
 function updatePlayerDecidingDeckCount() {
