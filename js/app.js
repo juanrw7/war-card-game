@@ -164,6 +164,7 @@ function playerWinsCard() {
   playerLeftSide.appendChild(newCardEl)
 //  console.log(playerPersonalDeck)
   updatePersonalDeckCount()
+  setTimeout(checkReShuffle,700)
 }
 
 function computerWinsCard() {
@@ -186,6 +187,7 @@ function computerWinsCard() {
   updateComputerDecidingDeckCount()
 
   updatePersonalDeckCount()
+  setTimeout(checkReShuffle,700)
 }
 
 function runWarMode() {
@@ -289,6 +291,76 @@ function computerWinsWar() {
   computerRightSide.appendChild(newCardEl)
   updateComputerDecidingDeckCount()
   updatePersonalDeckCount()
+}
+
+
+
+function checkReShuffle () {
+  if (playerPersonalDeck.length === 0 && playerDecidingDeck.length >0) {
+    console.log("RESHUFFLING player deck")
+    message.innerText = "RESHUFFLING"
+    console.log(playerDecidingDeck.length)
+
+    let arrayLength = [...playerDecidingDeck]
+
+    for (let i = 0; i < arrayLength.length; i++) {
+      let randIdx = Math.floor(Math.random() * playerDecidingDeck.length)
+      //    console.log(randIdx)
+      let cardToAdd = playerDecidingDeck.splice(randIdx, 1)[0]
+      playerPersonalDeck.push(cardToAdd)
+    }
+    
+    console.log("Reshufled player personal array below")
+    console.log(playerPersonalDeck)
+    setTimeout(updatePlayerBoardReshuffle,1000,playerLeftSide,playerRightSide,playerPersonalDeck)
+  } 
+  
+  if (computerPersonalDeck.length === 0 && computerDecidingDeck.length >0) {
+    console.log("RESHUFFLING computer deck")
+    message.innerText = "RESHUFFLING"
+    console.log(computerDecidingDeck.length)
+    
+    let arrayLength = [...computerDecidingDeck]
+
+    for (let i = 0; i < arrayLength.length; i++) {
+      let randIdx = Math.floor(Math.random() * computerDecidingDeck.length)
+      //    console.log(randIdx)
+      let cardToAdd = computerDecidingDeck.splice(randIdx, 1)[0]
+      computerPersonalDeck.push(cardToAdd)
+    }
+
+    console.log("Reshufled pc personal array below")
+    console.log(computerPersonalDeck)
+    setTimeout(updateComputerBoardReshuffle,1000,computerRightSide,computerLeftSide,computerPersonalDeck)
+  }
+}
+
+function updatePlayerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
+  clearBoard.innerHTML=""
+  updateBoard.innerHTML=""
+
+  let newCardEl= document.createElement("div")
+  newCardEl.className = "card back-red large"
+  updateBoard.appendChild(newCardEl)
+
+  let personalCount= document.createElement("button")
+  personalCount.className = "count-button"
+  personalCount.innerText = personalDeck.length
+  updateBoard.appendChild(personalCount)
+}
+
+function updateComputerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
+  clearBoard.innerHTML=""
+  updateBoard.innerHTML=""
+
+  let personalCount= document.createElement("button")
+  personalCount.className = "count-button"
+  personalCount.innerText = personalDeck.length
+  updateBoard.appendChild(personalCount)
+
+  let newCardEl= document.createElement("div")
+  newCardEl.className = "card back-red large"
+  updateBoard.appendChild(newCardEl)
 }
 
 function displayDecidingWarCards() {
