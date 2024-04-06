@@ -301,14 +301,7 @@ function checkReShuffle () {
     message.innerText = "RESHUFFLING"
     console.log(playerDecidingDeck.length)
 
-    let arrayLength = [...playerDecidingDeck]
-
-    for (let i = 0; i < arrayLength.length; i++) {
-      let randIdx = Math.floor(Math.random() * playerDecidingDeck.length)
-      //    console.log(randIdx)
-      let cardToAdd = playerDecidingDeck.splice(randIdx, 1)[0]
-      playerPersonalDeck.push(cardToAdd)
-    }
+    shuffle(playerDecidingDeck,playerPersonalDeck)
     
     console.log("Reshufled player personal array below")
     console.log(playerPersonalDeck)
@@ -319,20 +312,25 @@ function checkReShuffle () {
     console.log("RESHUFFLING computer deck")
     message.innerText = "RESHUFFLING"
     console.log(computerDecidingDeck.length)
-    
-    let arrayLength = [...computerDecidingDeck]
 
-    for (let i = 0; i < arrayLength.length; i++) {
-      let randIdx = Math.floor(Math.random() * computerDecidingDeck.length)
-      //    console.log(randIdx)
-      let cardToAdd = computerDecidingDeck.splice(randIdx, 1)[0]
-      computerPersonalDeck.push(cardToAdd)
-    }
+    shuffle(computerDecidingDeck,computerPersonalDeck)
 
     console.log("Reshufled pc personal array below")
     console.log(computerPersonalDeck)
     setTimeout(updateComputerBoardReshuffle,1000,computerRightSide,computerLeftSide,computerPersonalDeck)
   }
+}
+
+function shuffle(deck,deckToAdd) {
+  let arrayLength = [...deck]
+
+  for (let i = 0; i < arrayLength.length; i++) {
+    let randIdx = Math.floor(Math.random() * deck.length)
+    //    console.log(randIdx)
+    let cardToAdd = deck.splice(randIdx, 1)[0]
+    deckToAdd.push(cardToAdd)
+  }
+  return deck
 }
 
 function updatePlayerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
