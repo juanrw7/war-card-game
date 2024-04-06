@@ -192,6 +192,12 @@ function runWarMode() {
   console.log("handle war mode")
   message.innerText= "WAR"
 
+  //TODO test code below
+  //playerBoardSide.innerHTML= ""
+  //computerBoardSide.innerHTML= ""
+  computerWarBoard.innerHTML=""
+  computerWarCardHolder.innerHTML= ""
+
   setTimeout(displayUpsideDownCards,200)
   setTimeout(displayUpsideDownCards,500)
   setTimeout(displayUpsideDownCards,800)
@@ -201,43 +207,50 @@ function runWarMode() {
 }
 
 function determineWarWinner() {
-  if (checkVal(playerPersonalDeck[4]) > checkVal(computerPersonalDeck[4])) {
-    console.log("Player Wins War")
-    playerWinsWar()
 
-  } if (checkVal(playerPersonalDeck[4]) < checkVal(computerPersonalDeck[4])) {
+  let playerWarCards = playerPersonalDeck.splice(0,5)
+  let computerWarCards = computerPersonalDeck.splice(0,5)
+
+  console.log("player war cards length below")
+  console.log(playerWarCards)
+  console.log("computer war cards length below")
+  console.log(computerWarCards)
+  
+  if (checkVal(playerWarCards[4]) > checkVal(computerWarCards[4])) {
+    console.log("Player Wins War")
+    
+    playerDecidingDeck.push(...playerWarCards,...computerWarCards)
+    console.log(playerDecidingDeck)
+    
+    playerWinsWar()
+    
+  } if (checkVal(playerWarCards[4]) < checkVal(computerWarCards[4])) {
     console.log("Computer Wins War")
+
+    computerDecidingDeck.push(...playerWarCards,...computerWarCards)
+    console.log(computerDecidingDeck)
+
     computerWinsWar()
   
-  } if (checkVal(playerPersonalDeck[4]) === checkVal(computerPersonalDeck[4])){
+  } if (checkVal(playerWarCards[4]) === checkVal(computerWarCards[4])){
     console.log("DOUBLE WAR")
-//TODO  try  runWarMode()
+    handleDoubleWar()
   }
+}
+
+function handleDoubleWar() {
+  message.innerText= "DOUBLE WAR"
+  setTimeout(() => {
+    playerBoardSide.innerHTML= ""
+    computerBoardSide.innerHTML= ""
+    computerWarBoard.innerHTML=""
+    computerWarCardHolder.innerHTML= ""
+  }, 500);
+  setTimeout(runWarMode,1300)
 }
 
 function playerWinsWar() {
 
-  let cardsToAdd = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd)
-  let cardsToAdd2 = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd2)
-  let cardsToAdd3 = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd3)
-  let cardsToAdd4 = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd4)
-  let cardsToAdd5 = computerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd5)
-
-  let cardsToAdd6 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd6)
-  let cardsToAdd7 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd7)
-  let cardsToAdd8 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd8)
-  let cardsToAdd9 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd9)
-  let cardsToAdd10 = playerPersonalDeck.splice(0, 1)[0]
-  playerDecidingDeck.unshift(cardsToAdd10)
   console.log(playerDecidingDeck)
 
   message.innerText= "Player wins WAR"
@@ -250,6 +263,7 @@ function playerWinsWar() {
   playerLeftSide.innerHTML=""
 
   updatePlayerDecidingDeckCount()
+  updatePersonalDeckCount()
 
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
@@ -258,28 +272,7 @@ function playerWinsWar() {
 }
 
 function computerWinsWar() {
-  //TODO  dry this code, try using toString 
-  let cardsToAdd = computerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd)
-  let cardsToAdd2 = computerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd2)
-  let cardsToAdd3 = computerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd3)
-  let cardsToAdd4 = computerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd4)
-  let cardsToAdd5 = computerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd5)
 
-  let cardsToAdd6 = playerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd6)
-  let cardsToAdd7 = playerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd7)
-  let cardsToAdd8 = playerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd8)
-  let cardsToAdd9 = playerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd9)
-  let cardsToAdd10 = playerPersonalDeck.splice(0, 1)[0]
-  computerDecidingDeck.unshift(cardsToAdd10)
   console.log(computerDecidingDeck)
 
   message.innerText= "Computer wins WAR"
@@ -295,6 +288,7 @@ function computerWinsWar() {
   newCardEl.className = `card ${computerDecidingDeck[0]} large`
   computerRightSide.appendChild(newCardEl)
   updateComputerDecidingDeckCount()
+  updatePersonalDeckCount()
 }
 
 function displayDecidingWarCards() {
