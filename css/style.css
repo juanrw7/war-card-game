@@ -50,6 +50,7 @@ button {
   font-weight: bold;
   margin: 0px 5px 50px 5px;
   border-color: rgb(168, 192, 172) ;
+  cursor: pointer;
 }
 
 .message-container,.buttons-container {
