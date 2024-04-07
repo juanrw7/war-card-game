@@ -120,6 +120,9 @@ function updateBeginBoard() {
 }
 
 function handlePlayCard() {
+  resetButton.removeEventListener("click",handleReset)
+  playCardButton.removeEventListener("click",handlePlayCard)
+
   console.log("play card hit")
 
   message.innerText= "Comparing cards"
@@ -211,6 +214,9 @@ function playerWinsCard() {
 
   checkForWinner()
 
+  resetButton.addEventListener("click",handleReset)
+  playCardButton.addEventListener("click",handlePlayCard)
+
   setTimeout(checkReShuffle,700)
 }
 
@@ -236,6 +242,9 @@ function computerWinsCard() {
   updatePersonalDeckCount()
 
   checkForWinner()
+
+  resetButton.addEventListener("click",handleReset)
+  playCardButton.addEventListener("click",handlePlayCard)
 
   setTimeout(checkReShuffle,700)
 }
@@ -284,6 +293,8 @@ function determineWarWinner() {
     console.log(playerDecidingDeck)
     
     playerWinsWar()
+    resetButton.addEventListener("click",handleReset)
+    playCardButton.addEventListener("click",handlePlayCard)
     computerWarCards = []
     playerWarCards = []
     
@@ -294,6 +305,8 @@ function determineWarWinner() {
     console.log(computerDecidingDeck)
     
     computerWinsWar()
+    resetButton.addEventListener("click",handleReset)
+    playCardButton.addEventListener("click",handlePlayCard)
     computerWarCards = []
     playerWarCards = []
   
@@ -390,10 +403,13 @@ function checkWarReShuffle() {
 
 function checkReShuffle () {
   if (playerPersonalDeck.length === 0 && playerDecidingDeck.length >0) {
+    resetButton.removeEventListener("click",handleReset)
+    playCardButton.removeEventListener("click",handlePlayCard)
+    
     console.log("RESHUFFLING player deck")
     message.innerText = "RESHUFFLING"
     console.log(playerDecidingDeck.length)
-
+    
     shuffle(playerDecidingDeck,playerPersonalDeck)
     
     console.log("Reshufled player personal array below")
@@ -402,6 +418,9 @@ function checkReShuffle () {
   } 
   
   if (computerPersonalDeck.length === 0 && computerDecidingDeck.length >0) {
+    resetButton.removeEventListener("click",handleReset)
+    playCardButton.removeEventListener("click",handlePlayCard)
+
     console.log("RESHUFFLING computer deck")
     message.innerText = "RESHUFFLING"
     console.log(computerDecidingDeck.length)
@@ -440,6 +459,8 @@ function updatePlayerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
   updateBoard.appendChild(personalCount)
 
   message.innerText="Done!"
+  resetButton.addEventListener("click",handleReset)
+  playCardButton.addEventListener("click",handlePlayCard)
 }
 
 function updateComputerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
@@ -456,6 +477,8 @@ function updateComputerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
   updateBoard.appendChild(newCardEl)
 
   message.innerText="Done!"
+  resetButton.addEventListener("click",handleReset)
+  playCardButton.addEventListener("click",handlePlayCard)
 }
 
 function displayDecidingWarCards() {
@@ -550,4 +573,22 @@ function render() {
   computerWarCardHolder.innerHTML= ""
   computerDecidingDeck = []
   playerDecidingDeck = []
+}
+
+const testButton= document.getElementById("test")
+
+testButton.addEventListener("click",runTestButton)
+
+function runTestButton() {
+  testButton.removeEventListener("click",runTestButton)
+  console.log("Button works")
+
+  testButton.innerText= "NOPe"
+
+  setTimeout(addEventListenerBack,5000)
+}
+
+function addEventListenerBack() {
+  testButton.innerText="click"
+  testButton.addEventListener("click",runTestButton)
 }
