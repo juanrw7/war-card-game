@@ -217,7 +217,7 @@ function playerWinsCard() {
   resetButton.addEventListener("click",handleReset)
   playCardButton.addEventListener("click",handlePlayCard)
 
-  setTimeout(checkReShuffle,700)
+  setTimeout(checkReShuffle,0)
 }
 
 function computerWinsCard() {
@@ -246,7 +246,7 @@ function computerWinsCard() {
   resetButton.addEventListener("click",handleReset)
   playCardButton.addEventListener("click",handlePlayCard)
 
-  setTimeout(checkReShuffle,700)
+  setTimeout(checkReShuffle,0)
 }
 
 function runWarMode() {
@@ -351,7 +351,7 @@ function playerWinsWar() {
 
   checkForWinner()
 
-  setTimeout(checkReShuffle,700)
+  setTimeout(checkReShuffle,0)
 }
 
 function computerWinsWar() {
@@ -375,7 +375,7 @@ function computerWinsWar() {
 
   checkForWinner()
 
-  setTimeout(checkReShuffle,700)
+  setTimeout(checkReShuffle,0)
 }
 
 function checkWarReShuffle() {
@@ -405,31 +405,36 @@ function checkReShuffle () {
   if (playerPersonalDeck.length === 0 && playerDecidingDeck.length >0) {
     resetButton.removeEventListener("click",handleReset)
     playCardButton.removeEventListener("click",handlePlayCard)
-    
-    console.log("RESHUFFLING player deck")
-    message.innerText = "RESHUFFLING"
-    console.log(playerDecidingDeck.length)
-    
     shuffle(playerDecidingDeck,playerPersonalDeck)
+    
+    
+    setTimeout(() => {   
+      console.log("RESHUFFLING player deck")
+      message.innerText = "RESHUFFLING"
+      console.log(playerDecidingDeck.length)
+    }, 500);
     
     console.log("Reshufled player personal array below")
     console.log(playerPersonalDeck)
-    setTimeout(updatePlayerBoardReshuffle,700,playerLeftSide,playerRightSide,playerPersonalDeck)
+    setTimeout(updatePlayerBoardReshuffle,1100,playerLeftSide,playerRightSide,playerPersonalDeck)
   } 
   
   if (computerPersonalDeck.length === 0 && computerDecidingDeck.length >0) {
     resetButton.removeEventListener("click",handleReset)
     playCardButton.removeEventListener("click",handlePlayCard)
-
-    console.log("RESHUFFLING computer deck")
-    message.innerText = "RESHUFFLING"
-    console.log(computerDecidingDeck.length)
-
     shuffle(computerDecidingDeck,computerPersonalDeck)
+    
+    setTimeout(() => {
+      
+          console.log("RESHUFFLING computer deck")
+          message.innerText = "RESHUFFLING"
+          console.log(computerDecidingDeck.length)
+      
+    }, 500);
 
     console.log("Reshufled pc personal array below")
     console.log(computerPersonalDeck)
-    setTimeout(updateComputerBoardReshuffle,700,computerRightSide,computerLeftSide,computerPersonalDeck)
+    setTimeout(updateComputerBoardReshuffle,1100,computerRightSide,computerLeftSide,computerPersonalDeck)
   }
 }
 
