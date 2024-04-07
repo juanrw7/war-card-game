@@ -574,21 +574,3 @@ function render() {
   computerDecidingDeck = []
   playerDecidingDeck = []
 }
-
-const testButton= document.getElementById("test")
-
-testButton.addEventListener("click",runTestButton)
-
-function runTestButton() {
-  testButton.removeEventListener("click",runTestButton)
-  console.log("Button works")
-
-  testButton.innerText= "NOPe"
-
-  setTimeout(addEventListenerBack,5000)
-}
-
-function addEventListenerBack() {
-  testButton.innerText="click"
-  testButton.addEventListener("click",runTestButton)
-}
