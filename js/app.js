@@ -306,7 +306,6 @@ function computerWinsWar() {
 }
 
 function checkWarReShuffle() {
-
   if (playerPersonalDeck.length<5) {
     message.innerText = "RESHUFFLING"
 
@@ -314,11 +313,8 @@ function checkWarReShuffle() {
 
     console.log("Reshufled player personal array below")
     console.log(playerPersonalDeck)
-    //updatePlayerBoardReshuffle(playerLeftSide,playerRightSide,playerPersonalDeck)
-    setTimeout(updatePlayerBoardReshuffle,300,playerLeftSide,playerRightSide,playerPersonalDeck)
-    setTimeout(() => {
-      return
-    }, 1000);
+    setTimeout(updatePlayerBoardReshuffle,190,playerLeftSide,playerRightSide,playerPersonalDeck)
+    
   } if (computerPersonalDeck.length<5) {
     console.log("RESHUFFLING computer deck")
     message.innerText = "RESHUFFLING"
@@ -328,8 +324,7 @@ function checkWarReShuffle() {
 
     console.log("Reshufled pc personal array below")
     console.log(computerPersonalDeck)
-    //updateComputerBoardReshuffle(computerRightSide,computerLeftSide,computerPersonalDeck)
-    setTimeout(updateComputerBoardReshuffle,300,computerRightSide,computerLeftSide,computerPersonalDeck)
+    setTimeout(updateComputerBoardReshuffle,190,computerRightSide,computerLeftSide,computerPersonalDeck)
   }
 }
 
