@@ -66,8 +66,7 @@ function beginGame() {
   generatePlayerDeck()
   generateComputerDeck()
   gameIsInPlay = true
-  console.log(playerPersonalDeck)
-  console.log(computerPersonalDeck)
+
   message.innerText = "Shuffling deck"
   beginButton.style.display = "none"
   setTimeout(render,1000)
@@ -77,7 +76,6 @@ function beginGame() {
 function generatePlayerDeck() {
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
-    //    console.log(randIdx)
     let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     playerPersonalDeck.push(cardToAdd)
   }
@@ -87,7 +85,6 @@ function generatePlayerDeck() {
 function generateComputerDeck() {
   for (let i = 0; i <= 25; i++) {
     let randIdx = Math.floor(Math.random() * deckCopy.length)
-    //    console.log(randIdx)
     let cardToAdd = deckCopy.splice(randIdx, 1)[0]
     computerPersonalDeck.push(cardToAdd)
   }
@@ -123,8 +120,6 @@ function handlePlayCard() {
   resetButton.removeEventListener("click",handleReset)
   playCardButton.removeEventListener("click",handlePlayCard)
 
-  console.log("play card hit")
-
   message.innerText= "Comparing cards"
 
   let newCardEl= document.createElement("div")
@@ -136,28 +131,23 @@ function handlePlayCard() {
   computerBoardSide.appendChild(newCardEl2)
 
   if (checkVal(playerPersonalDeck[0]) > checkVal(computerPersonalDeck[0])) {
-    console.log("player card is higher")
     setTimeout(playerWinsCard,1000)
 
   }  if (checkVal(playerPersonalDeck[0]) < checkVal(computerPersonalDeck[0])) {
-    console.log("computer card is higher")
     setTimeout(computerWinsCard,1000)
     
   }  if (checkVal(playerPersonalDeck[0]) === checkVal(computerPersonalDeck[0])) {
-    console.log("Enter War mode")
     checkForWinnerBeforeWar()
   }
 }
 
 function checkForWinner() {
   if (+playerPersonalDeck.length + +playerDecidingDeck.length===52) {
-    console.log("PLAYER WINS")
     message.innerText= "YOU WIN!!!"
 
     playCardButton.style.display ="none"
     
-  } else if (+computerPersonalDeck.length + +computerDecidingDeck.length===52){
-    console.log("COMPUTER WINS")    
+  } else if (+computerPersonalDeck.length + +computerDecidingDeck.length===52){ 
     message.innerText= "You lose."
 
     playCardButton.style.display ="none"  
@@ -166,25 +156,16 @@ function checkForWinner() {
 
 function checkForWinnerBeforeWar() {
   if (+playerPersonalDeck.length + +playerDecidingDeck.length >= 5 && +computerPersonalDeck.length + +computerDecidingDeck.length >= 5) {
-    console.log("Both can go into war")
 
-    console.log("Adding the tied cards into respective war decks")
-    console.log("player card")
     let playerTiedCard = playerPersonalDeck.splice(0,1)[0]
-    console.log(playerTiedCard)
     playerWarCards.push(playerTiedCard)
-    console.log(playerWarCards)
 
-    console.log("computer card")
     let computerTiedCard = computerPersonalDeck.splice(0,1)[0]
-    console.log(computerTiedCard)
     computerWarCards.push(computerTiedCard)
-    console.log(computerWarCards)
 
     setTimeout(runWarMode,1000)
 
   } else   if (+playerPersonalDeck.length + +playerDecidingDeck.length<5) {
-    console.log("Computer wins/Player loses, not enough cards")
     message.innerText= "You lose."
 
     playCardButton.style.display ="none"
@@ -194,7 +175,6 @@ function checkForWinnerBeforeWar() {
     playerLeftSide.appendChild(warLoseMessage)
     
   } else if (+computerPersonalDeck.length + +computerDecidingDeck.length<5) {
-    console.log("player wins/computer loses, not enough cards")
     message.innerText= "You win!!!"
     
     playCardButton.style.display ="none"
@@ -206,7 +186,6 @@ function checkForWinnerBeforeWar() {
 }
 
 function playerWinsCard() {
-  console.log("handle player winning card")
   message.innerText= "Player wins round"
 
   playerBoardSide.innerHTML= ""
@@ -217,15 +196,13 @@ function playerWinsCard() {
   let cardToAdd = computerPersonalDeck.splice(0, 1)[0]
   playerDecidingDeck.unshift(cardToAdd)
 
-//  console.log(playerDecidingDeck)
   playerLeftSide.innerHTML = ""
   updatePlayerDecidingDeckCount()
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[0]} large`
   playerLeftSide.appendChild(newCardEl)
-//  console.log(playerPersonalDeck)
-  updatePersonalDeckCount()
 
+  updatePersonalDeckCount()
   checkForWinner()
 
   resetButton.addEventListener("click",handleReset)
@@ -235,7 +212,6 @@ function playerWinsCard() {
 }
 
 function computerWinsCard() {
-  console.log("handle computer winning card")
   message.innerText= "Computer wins round"
 
   playerBoardSide.innerHTML= ""
@@ -250,11 +226,9 @@ function computerWinsCard() {
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${computerDecidingDeck[0]} large`
   computerRightSide.appendChild(newCardEl)
-//  console.log(playerPersonalDeck)
+
   updateComputerDecidingDeckCount()
-
   updatePersonalDeckCount()
-
   checkForWinner()
 
   resetButton.addEventListener("click",handleReset)
@@ -263,12 +237,7 @@ function computerWinsCard() {
   checkReShuffle()
 }
 
-function runWarMode() {
-  console.log("handle war mode")
-  
-  //TODO test code below
-  //playerBoardSide.innerHTML= ""
-  //computerBoardSide.innerHTML= ""
+function runWarMode() {  
   computerWarBoard.innerHTML=""
   computerWarCardHolder.innerHTML= ""
   checkWarReShuffle()
@@ -286,25 +255,14 @@ function runWarMode() {
 function determineWarWinner() {
 
   let cardsAddedToPlayerWarCards = playerPersonalDeck.splice(0,4)
-  console.log(cardsAddedToPlayerWarCards)
   playerWarCards.unshift(...cardsAddedToPlayerWarCards)
-  console.log(playerWarCards)
 
   let cardsAddedToComputerWarCards = computerPersonalDeck.splice(0,4)
-  console.log(cardsAddedToComputerWarCards)
   computerWarCards.unshift(...cardsAddedToComputerWarCards)
-  console.log(computerWarCards)
-
-  console.log("player war cards length below")
-  console.log(playerWarCards)
-  console.log("computer war cards length below")
-  console.log(computerWarCards)
   
   if (checkVal(playerWarCards[3]) > checkVal(computerWarCards[3])) {
-    console.log("Player Wins War")
     
     playerDecidingDeck.unshift(...playerWarCards,...computerWarCards)
-    console.log(playerDecidingDeck)
     
     playerWinsWar()
     resetButton.addEventListener("click",handleReset)
@@ -313,10 +271,8 @@ function determineWarWinner() {
     playerWarCards = []
     
   } else if (checkVal(playerWarCards[3]) < checkVal(computerWarCards[3])) {
-    console.log("Computer Wins War")
     
     computerDecidingDeck.unshift(...playerWarCards,...computerWarCards)
-    console.log(computerDecidingDeck)
     
     computerWinsWar()
     resetButton.addEventListener("click",handleReset)
@@ -325,7 +281,7 @@ function determineWarWinner() {
     playerWarCards = []
   
   } else if (checkVal(playerWarCards[3]) === checkVal(computerWarCards[3])){
-    console.log("DOUBLE WAR")
+
     checkReShuffle()
     handleDoubleWar()
   }
@@ -343,9 +299,6 @@ function handleDoubleWar() {
 }
 
 function playerWinsWar() {
-
-  console.log(playerDecidingDeck)
-
   message.innerText= "Player wins WAR"
 
   playerBoardSide.innerHTML= ""
@@ -361,17 +314,12 @@ function playerWinsWar() {
   let newCardEl= document.createElement("div")
   newCardEl.className = `card ${playerDecidingDeck[3]} large`
   playerLeftSide.appendChild(newCardEl)
-//  console.log(playerPersonalDeck)
 
   checkForWinner()
-
   checkReShuffle()
 }
 
 function computerWinsWar() {
-
-  console.log(computerDecidingDeck)
-
   message.innerText= "Computer wins WAR"
 
   playerBoardSide.innerHTML= ""
@@ -398,19 +346,13 @@ function checkWarReShuffle() {
 
     shuffle(playerDecidingDeck,playerPersonalDeck)
 
-    console.log("Reshufled player personal array below")
-    console.log(playerPersonalDeck)
     setTimeout(updatePlayerBoardReshuffle,190,playerLeftSide,playerRightSide,playerPersonalDeck)
 
   } if (computerPersonalDeck.length<5) {
-    console.log("RESHUFFLING computer deck")
     message.innerText = "RESHUFFLING"
-    console.log(computerDecidingDeck.length)
 
     shuffle(computerDecidingDeck,computerPersonalDeck)
 
-    console.log("Reshufled pc personal array below")
-    console.log(computerPersonalDeck)
     setTimeout(updateComputerBoardReshuffle,190,computerRightSide,computerLeftSide,computerPersonalDeck)
   }
 }
@@ -423,13 +365,9 @@ function checkReShuffle () {
     
     
     setTimeout(() => {   
-      console.log("RESHUFFLING player deck")
       message.innerText = "RESHUFFLING"
-      console.log(playerDecidingDeck.length)
     }, 500);
-    
-    console.log("Reshufled player personal array below")
-    console.log(playerPersonalDeck)
+
     setTimeout(updatePlayerBoardReshuffle,1100,playerLeftSide,playerRightSide,playerPersonalDeck)
   } 
   
@@ -439,15 +377,9 @@ function checkReShuffle () {
     shuffle(computerDecidingDeck,computerPersonalDeck)
     
     setTimeout(() => {
-      
-          console.log("RESHUFFLING computer deck")
-          message.innerText = "RESHUFFLING"
-          console.log(computerDecidingDeck.length)
-      
+        message.innerText = "RESHUFFLING"
     }, 500);
 
-    console.log("Reshufled pc personal array below")
-    console.log(computerPersonalDeck)
     setTimeout(updateComputerBoardReshuffle,1100,computerRightSide,computerLeftSide,computerPersonalDeck)
   }
 }
@@ -457,7 +389,6 @@ function shuffle(deck,deckToAdd) {
 
   for (let i = 0; i < arrayLength.length; i++) {
     let randIdx = Math.floor(Math.random() * deck.length)
-    //    console.log(randIdx)
     let cardToAdd = deck.splice(randIdx, 1)[0]
     deckToAdd.push(cardToAdd)
   }
@@ -571,7 +502,6 @@ function checkVal(str) {
 }
 
 function render() {
-  console.log(gameIsInPlay)
   if (gameIsInPlay) {
     resetButton.style.display =""
     playCardButton.style.display =""
