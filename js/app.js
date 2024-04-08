@@ -342,6 +342,8 @@ function computerWinsWar() {
 
 function checkWarReShuffle() {
   if (playerPersonalDeck.length<5) {
+    resetButton.removeEventListener("click",handleReset)
+    playCardButton.removeEventListener("click",handlePlayCard)
     message.innerText = "RESHUFFLING"
 
     shuffle(playerDecidingDeck,playerPersonalDeck)
@@ -349,6 +351,8 @@ function checkWarReShuffle() {
     setTimeout(updatePlayerBoardReshuffle,190,playerLeftSide,playerRightSide,playerPersonalDeck)
 
   } if (computerPersonalDeck.length<5) {
+    resetButton.removeEventListener("click",handleReset)
+    playCardButton.removeEventListener("click",handlePlayCard)
     message.innerText = "RESHUFFLING"
 
     shuffle(computerDecidingDeck,computerPersonalDeck)
