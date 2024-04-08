@@ -167,6 +167,20 @@ function checkForWinner() {
 function checkForWinnerBeforeWar() {
   if (+playerPersonalDeck.length + +playerDecidingDeck.length >= 5 && +computerPersonalDeck.length + +computerDecidingDeck.length >= 5) {
     console.log("Both can go into war")
+
+    console.log("Adding the tied cards into respective war decks")
+    console.log("player card")
+    let playerTiedCard = playerPersonalDeck.splice(0,1)[0]
+    console.log(playerTiedCard)
+    playerWarCards.push(playerTiedCard)
+    console.log(playerWarCards)
+
+    console.log("computer card")
+    let computerTiedCard = computerPersonalDeck.splice(0,1)[0]
+    console.log(computerTiedCard)
+    computerWarCards.push(computerTiedCard)
+    console.log(computerWarCards)
+
     setTimeout(runWarMode,1000)
 
   } else   if (+playerPersonalDeck.length + +playerDecidingDeck.length<5) {
@@ -271,12 +285,12 @@ function runWarMode() {
 
 function determineWarWinner() {
 
-  let cardsAddedToPlayerWarCards = playerPersonalDeck.splice(0,5)
+  let cardsAddedToPlayerWarCards = playerPersonalDeck.splice(0,4)
   console.log(cardsAddedToPlayerWarCards)
   playerWarCards.unshift(...cardsAddedToPlayerWarCards)
   console.log(playerWarCards)
 
-  let cardsAddedToComputerWarCards = computerPersonalDeck.splice(0,5)
+  let cardsAddedToComputerWarCards = computerPersonalDeck.splice(0,4)
   console.log(cardsAddedToComputerWarCards)
   computerWarCards.unshift(...cardsAddedToComputerWarCards)
   console.log(computerWarCards)
@@ -286,7 +300,7 @@ function determineWarWinner() {
   console.log("computer war cards length below")
   console.log(computerWarCards)
   
-  if (checkVal(playerWarCards[4]) > checkVal(computerWarCards[4])) {
+  if (checkVal(playerWarCards[3]) > checkVal(computerWarCards[3])) {
     console.log("Player Wins War")
     
     playerDecidingDeck.unshift(...playerWarCards,...computerWarCards)
@@ -298,7 +312,7 @@ function determineWarWinner() {
     computerWarCards = []
     playerWarCards = []
     
-  } else if (checkVal(playerWarCards[4]) < checkVal(computerWarCards[4])) {
+  } else if (checkVal(playerWarCards[3]) < checkVal(computerWarCards[3])) {
     console.log("Computer Wins War")
     
     computerDecidingDeck.unshift(...playerWarCards,...computerWarCards)
@@ -310,7 +324,7 @@ function determineWarWinner() {
     computerWarCards = []
     playerWarCards = []
   
-  } else if (checkVal(playerWarCards[4]) === checkVal(computerWarCards[4])){
+  } else if (checkVal(playerWarCards[3]) === checkVal(computerWarCards[3])){
     console.log("DOUBLE WAR")
     checkReShuffle()
     handleDoubleWar()
@@ -345,7 +359,7 @@ function playerWinsWar() {
   updatePersonalDeckCount()
 
   let newCardEl= document.createElement("div")
-  newCardEl.className = `card ${playerDecidingDeck[0]} large`
+  newCardEl.className = `card ${playerDecidingDeck[3]} large`
   playerLeftSide.appendChild(newCardEl)
 //  console.log(playerPersonalDeck)
 
@@ -368,7 +382,7 @@ function computerWinsWar() {
   computerRightSide.innerHTML=""
   
   let newCardEl= document.createElement("div")
-  newCardEl.className = `card ${computerDecidingDeck[0]} large`
+  newCardEl.className = `card ${computerDecidingDeck[3]} large`
   computerRightSide.appendChild(newCardEl)
   updateComputerDecidingDeckCount()
   updatePersonalDeckCount()
@@ -488,10 +502,10 @@ function updateComputerBoardReshuffle(clearBoard,updateBoard,personalDeck) {
 
 function displayDecidingWarCards() {
   let newCardEl= document.createElement("div")
-  newCardEl.className = `card ${playerPersonalDeck[4]} large`
+  newCardEl.className = `card ${playerPersonalDeck[3]} large`
   playerBoardSide.appendChild(newCardEl)
   let newCardEl2= document.createElement("div")
-  newCardEl2.className =  `card ${computerPersonalDeck[4]} large`
+  newCardEl2.className =  `card ${computerPersonalDeck[3]} large`
   computerWarCardHolder.appendChild(newCardEl2)
 }
 
