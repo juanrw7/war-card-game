@@ -231,7 +231,7 @@ function playerWinsCard() {
   resetButton.addEventListener("click",handleReset)
   playCardButton.addEventListener("click",handlePlayCard)
 
-  setTimeout(checkReShuffle,0)
+  checkReShuffle()
 }
 
 function computerWinsCard() {
@@ -260,7 +260,7 @@ function computerWinsCard() {
   resetButton.addEventListener("click",handleReset)
   playCardButton.addEventListener("click",handlePlayCard)
 
-  setTimeout(checkReShuffle,0)
+  checkReShuffle()
 }
 
 function runWarMode() {
@@ -365,7 +365,7 @@ function playerWinsWar() {
 
   checkForWinner()
 
-  setTimeout(checkReShuffle,0)
+  checkReShuffle()
 }
 
 function computerWinsWar() {
@@ -389,7 +389,7 @@ function computerWinsWar() {
 
   checkForWinner()
 
-  setTimeout(checkReShuffle,0)
+  checkReShuffle()
 }
 
 function checkWarReShuffle() {
